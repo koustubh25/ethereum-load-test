@@ -1,0 +1,9 @@
+.DS_Store
+*.pyc
+.env
+__pycache__
+build/*
+dist/*
+*.egg*
+testethjsonrpc.py
+venv
