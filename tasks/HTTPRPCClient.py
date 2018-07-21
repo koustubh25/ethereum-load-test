@@ -164,5 +164,5 @@ class HTTPRPCClient(TaskSet):
         random_block_number, random_block = self.__get_random_block()
         transactions, transaction = self.__get_random_transaction_within_block(random_block_number)
         if transactions:
-            transaction = self.client.eth_getTransactionByBlockHashAndIndex(random_block['hash'], transaction)
+            transaction = self.client.eth_getTransactionByBlockHashAndIndex(random_block['hash'], transaction - 1)
             self.client.eth_getTransactionReceipt(transaction['hash'])
