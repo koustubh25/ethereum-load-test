@@ -30,12 +30,12 @@ class HTTPRPCClient(TaskSet):
     # Tasks follow    
 
     # @geth_locust_task
-    # @task(1)
+    # @task(10)
     # def get_eth_coinbase(self):
     #     return self.client.eth_coinbase()   
 
     @geth_locust_task
-    @task(1)
+    @task(10)
     def get_balance(self, count=10):
         addrs = []
         block = self.client.eth_getBlockByNumber()
@@ -58,14 +58,14 @@ class HTTPRPCClient(TaskSet):
 
 
     @geth_locust_task
-    @task(1)
+    @task(10)
     def get_eth_hashrate(self):
         if(self.client.eth_mining):
             return self.client.eth_hashrate()  
           
 
     # @geth_locust_task
-    # @task(1)
+    # @task(10)
     # def get_block_transaction_count_by_hash_scaled(self):
     #     for x in range(self.number_of_blocks_to_traverse):
     #         random_block_number, random_block = self.__get_random_block()
@@ -82,7 +82,7 @@ class HTTPRPCClient(TaskSet):
         
 
     @geth_locust_task
-    @task(1)
+    @task(10)
     def get_block_transaction_count_by_hash(self):
         random_block_number, random_block = self.__get_random_block()
         random_hash = random_block['hash']
@@ -90,20 +90,20 @@ class HTTPRPCClient(TaskSet):
 
     # Traverse random blocks and get transaction count. Tests Disk IOPS
     # @geth_locust_task
-    # @task(1)
+    # @task(10)
     # def get_block_transaction_count_by_number_scaled(self):    
     #     for x in range(self.number_of_blocks_to_traverse):
     #         random_block_number, random_block = self.__get_random_block()
     #         result = self.client.eth_getBlockTransactionCountByNumber(random_block_number)
 
     @geth_locust_task
-    @task(1)
+    @task(10)
     def get_block_transaction_count_by_number(self):    
         random_block_number, random_block = self.__get_random_block()
         result = self.client.eth_getBlockTransactionCountByNumber(random_block_number)            
 
     @geth_locust_task
-    @task(1)
+    @task(10)
     def get_transaction_by_block_number_and_index(self):
         random_block_number, random_block = self.__get_random_block()
         transaction_count = self.client.eth_getBlockTransactionCountByNumber(random_block_number)
@@ -112,7 +112,7 @@ class HTTPRPCClient(TaskSet):
             self.client.eth_getTransactionByBlockNumberAndIndex(random_block_number, random_transaction_number)
 
     # @geth_locust_task
-    # @task(1)
+    # @task(10)
     # def get_transaction_by_block_number_and_index_scaled(self):
     #     for x in range(self.number_of_blocks_to_traverse):
     #         random_block_number, random_block = self.__get_random_block()
@@ -122,7 +122,7 @@ class HTTPRPCClient(TaskSet):
     #             self.client.eth_getTransactionByBlockNumberAndIndex(random_block_number, random_transaction_number)            
 
     @geth_locust_task
-    @task(1)
+    @task(10)
     def get_uncle_by_block_hash_and_index(self):
         random_block_number, random_block = self.__get_random_block()
         for x in ['earliest', 'latest', 'pending', random_block_number]:
@@ -132,25 +132,25 @@ class HTTPRPCClient(TaskSet):
 
     # This function applies to stored contract
     # @geth_locust_task
-    # @task(1)
+    # @task(10)
     # def get_storage_at(self):
     #     random_block_number, random_block = self.__get_random_block()
     #     self.client.eth_getStorageAt(random_block['hash'], random_block_number)
 
     @geth_locust_task
-    @task(1)
+    @task(10)
     def get_eth_get_uncle_count_by_block_number(self):
         random_block_number, random_block = self.__get_random_block()
         self.client.eth_getUncleCountByBlockNumber(random_block_number)
 
     @geth_locust_task
-    @task(1)
+    @task(10)
     def eth_get_uncle_count_by_block_hash(self):
         random_block_number, random_block = self.__get_random_block()
         self.client.eth_getUncleCountByBlockHash(random_block['hash'])
 
     @geth_locust_task
-    @task(1)
+    @task(10)
     def eth_get_uncle_by_block_hash_and_index(self):
         random_block_number, random_block = self.__get_random_block()
         transactions, transaction_number = self.__get_random_transaction_number_within_block(random_block_number)
@@ -159,7 +159,7 @@ class HTTPRPCClient(TaskSet):
 
 
     @geth_locust_task
-    @task(1)
+    @task(10)
     def eth_get_transaction_receipt_by_blockhash_and_index(self):
         random_block_number, random_block = self.__get_random_block()
         transactions, transaction = self.__get_random_transaction_within_block(random_block_number)
