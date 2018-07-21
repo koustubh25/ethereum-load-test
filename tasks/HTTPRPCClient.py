@@ -76,8 +76,9 @@ class HTTPRPCClient(TaskSet):
     @geth_locust_task
     @task(1)
     def is_syncing(self):
+        syncing = self.client.eth_syncing()
         if self.client.eth_syncing():
-            raise Exception("Blockchain not in sync") 
+            raise Exception("Blockchain not in sync. " + str(int(syncing['highestBlock'], 16) - int(syncing['currentBlock'], 16)) +  " blocks behind") 
 
         
 
